@@ -1,17 +1,19 @@
 #pragma once
 
 #include <PlaystationUiBridgeSpecJSI.h>
-
 #include <memory>
+#include <string>
 
-namespace facebook::react {
+namespace facebook::react
+{
 
-class PlaystationUiBridgeImpl
-  : public NativePlaystationUiBridgeCxxSpec<PlaystationUiBridgeImpl> {
-public:
-  PlaystationUiBridgeImpl(std::shared_ptr<CallInvoker> jsInvoker);
+  class PlaystationUiBridgeImpl
+      : public NativePlaystationUiBridgeCxxSpec<PlaystationUiBridgeImpl>
+  {
+  public:
+    PlaystationUiBridgeImpl(std::shared_ptr<CallInvoker> jsInvoker);
 
-  double multiply(jsi::Runtime& rt, double a, double b);
-};
+    std::string processEngineState(jsi::Runtime &rt, std::string payload);
+  };
 
 }

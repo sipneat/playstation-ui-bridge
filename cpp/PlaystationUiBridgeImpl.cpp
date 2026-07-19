@@ -1,18 +1,19 @@
 #include "PlaystationUiBridgeImpl.h"
+#include <string>
+#include <algorithm>
 
-namespace facebook::react {
+namespace facebook::react
+{
 
-PlaystationUiBridgeImpl::PlaystationUiBridgeImpl(
-  std::shared_ptr<CallInvoker> jsInvoker
-)
-  : NativePlaystationUiBridgeCxxSpec(std::move(jsInvoker)) {}
+  PlaystationUiBridgeImpl::PlaystationUiBridgeImpl(
+      std::shared_ptr<CallInvoker> jsInvoker)
+      : NativePlaystationUiBridgeCxxSpec(std::move(jsInvoker)) {}
 
-double PlaystationUiBridgeImpl::multiply(
-  jsi::Runtime& rt,
-  double a,
-  double b
-) {
-  return a * b;
-}
+  std::string PlaystationUiBridgeImpl::processEngineState(jsi::Runtime &rt, std::string payload)
+  {
+    std::transform(payload.begin(), payload.end(), payload.begin(), [](unsigned char c)
+                   { return std::toupper(c); });
+    return "[SIE_RUNTIME_OK] " + payload;
+  }
 
 }

@@ -1,12 +1,12 @@
 import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'react-native-playstation-ui-bridge';
+import { processEngineState } from 'react-native-playstation-ui-bridge';
 
-const result = multiply(3, 7);
+const result = processEngineState('chat');
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>Engine State: {result}</Text>
     </View>
   );
 }
